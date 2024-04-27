@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+  <h1>Listado de Eventos</h1>
+  <table class="table table-striped mt-3">
+    <thead>
+      <tr>
+        <th>Título</th>
+        <th>Descripción</th>
+        <th>Fecha de Inicio</th>
+        <th>Fecha de Fin</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for evento in eventos %}
+      <tr>
+        <td>{{ evento.titulo }}</td>
+        <td>{{ evento.descripcion }}</td>
+        <td>{{ evento.fecha_inicio }}</td>
+        <td>{{ evento.fecha_fin }}</td>
+        <td>
+          <a href="{% url 'actualizar_evento' evento.id %}" class="btn btn-sm btn-primary">Actualizar</a>
+          <a href="{% url 'eliminar_evento' evento.id %}" class="btn btn-sm btn-danger">Eliminar</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <a href="{% url 'crear_evento' %}" class="btn btn-primary">Crear Nuevo Evento</a>
+</div>
+{% endblock %}
